@@ -1,0 +1,23 @@
+{:paths ["src" "classes" "resources"]
+ :deps {org.clojure/clojure {:mvn/version "1.11.1"}
+        com.badlogicgames.gdx/gdx {:mvn/version "1.11.0"}
+        com.badlogicgames.gdx/gdx-backend-lwjgl {:mvn/version "1.11.0"}
+        com.badlogicgames.gdx/gdx-box2d {:mvn/version "1.11.0"}
+        com.badlogicgames.gdx/gdx-box2d-platform$natives-desktop {:mvn/version "1.11.0"}
+        com.badlogicgames.gdx/gdx-bullet {:mvn/version "1.11.0"}
+        com.badlogicgames.gdx/gdx-bullet-platform$natives-desktop {:mvn/version "1.11.0"}
+        com.badlogicgames.gdx/gdx-platform$natives-desktop {:mvn/version "1.11.0"}}
+ :aliases
+ {:run {:main-opts ["-m" "delboni.desktop-launcher"]}
+  :build {:deps {io.github.seancorfield/build-clj
+                 {:git/tag "v0.6.3" :git/sha "9b8e09b"
+                  ;; since we're building an app uberjar, we do not
+                  ;; need deps-deploy for clojars.org deployment:
+                  :deps/root "slim"}}
+          :ns-default build}
+  :test {:extra-paths ["test"]
+         :extra-deps {org.clojure/test.check {:mvn/version "1.1.1"}
+                      io.github.cognitect-labs/test-runner
+                      {:git/tag "v0.5.1" :git/sha "dfb30dd"}}}
+  :nrepl {:extra-deps {}
+          :main-opts ["-m" "nrepl.cmdline" "--middleware" "[cider.nrepl/cider-middleware]"]}}}
